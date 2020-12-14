@@ -35,49 +35,59 @@ const promptUser = () => {
                 "View Budget"
             ]
         }
-    ]).then ((answer) => {
+    ]).then((answer) => {
         //Depending on selection, proper function is fired
         switch (answer.action) {
             case "View all employees":
                 viewAllEmpls()
-            break
+                break
             case "View all employees by role":
                 viewEmplsRoles()
-            break
+                break
             case "View all employees by department":
                 viewEmplsDept()
-            break
+                break
             case "Update employee":
                 updateEmpl()
-            break
+                break
             case "Add Role":
                 addRole()
-            break
+                break
             case "Add Department":
                 addDept()
-            break
+                break
             case "View Budget":
                 viewBudget()
-            break
+                break
         }
     })
 }
 
 const viewAllEmpls = () => {
-    connection.query("SELECT employee.first_name, employee.last_name, role.title, role.salary, department.name, CONCAT(empl.first_name, ' ' ,empl.last_name) AS Manager FROM employee INNER JOIN role on role.id = employee.role_id INNER JOIN department on department.id = role.department_id left join employee empl on employee.manager_id = empl.id;", 
-    function(err, res) {
-      if (err) throw err
-      console.table(res)
-      promptUser()
-    })
+    connection.query("SELECT * FROM `employees_DB`.`employee`;",
+        (err, res) => {
+            if (err) throw err
+            console.table(res)
+            promptUser()
+        })
 }
 
 const viewEmplsRoles = () => {
-
+    connection.query("SELECT employee.first_name, employee.last_name, role.title AS Title FROM employee JOIN role ON employee.role_id = role.id;",
+        (err, res) => {
+            if (err) throw err
+            console.table(res)
+            promptUser()
+        })
 }
 
 const viewEmplsDept = () => {
-
+    connection.query("SELECT employee.first_name, employee.last_name, department.name AS Department FROM employee JOIN role ON employee.role_id = role.id JOIN department ON role.department_id = department.id ORDER BY employee.id;",
+    (err, res) => {
+        if (err) throw err
+        console.table(res)
+        promptUser()
+    })
 }
 
 const updateEmpl = () => {
