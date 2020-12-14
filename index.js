@@ -31,11 +31,12 @@ const promptUser = () => {
                 "View all employees by department",
                 "Update employee",
                 "Add Role",
-                "Add Department"
+                "Add Department",
+                "View Budget"
             ]
         }
     ]).then ((answer) => {
-        //Depending on selection proper function is fired
+        //Depending on selection, proper function is fired
         switch (answer.action) {
             case "View all employees":
                 viewAllEmpls()
@@ -53,8 +54,44 @@ const promptUser = () => {
                 addRole()
             break
             case "Add Department":
-                viewAllEmpls()
+                addDept()
+            break
+            case "View Budget":
+                viewBudget()
             break
         }
     })
+}
+
+const viewAllEmpls = () => {
+    connection.query("SELECT employee.first_name, employee.last_name, role.title, role.salary, department.name, CONCAT(empl.first_name, ' ' ,empl.last_name) AS Manager FROM employee INNER JOIN role on role.id = employee.role_id INNER JOIN department on department.id = role.department_id left join employee empl on employee.manager_id = empl.id;", 
+    function(err, res) {
+      if (err) throw err
+      console.table(res)
+      promptUser()
+    })
+}
+
+const viewEmplsRoles = () => {
+
+}
+
+const viewEmplsDept = () => {
+
+}
+
+const updateEmpl = () => {
+
+}
+
+const addRole = () => {
+
+}
+
+const addDept = () => {
+
+}
+
+const viewBudget = () => {
+
 }
