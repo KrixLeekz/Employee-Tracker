@@ -227,8 +227,14 @@ const addDept = () => {
     })
 }
 
+//Sums up total budget
 const viewBudget = () => {
-
+    connection.query("SELECT SUM(salary) FROM `employees_DB`.`role`;",
+    (err, res) => {
+        if (err) throw err
+        console.table(res)
+        promptUser()
+    })
 }
 
 //--------------------------------Supplement functions----------------------------//
