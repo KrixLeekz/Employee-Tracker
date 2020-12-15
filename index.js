@@ -153,7 +153,7 @@ const addRole = () => {
                 message: "What is the Salary?"
 
             }
-        ]).then(function (res) {
+        ]).then((res) => {
             connection.query(
                 "INSERT INTO role SET ?",
                 {
@@ -171,8 +171,27 @@ const addRole = () => {
     })
 }
 
+//Adds Department
 const addDept = () => {
-
+    inquirer.prompt([
+        {
+          name: "name",
+          type: "input",
+          message: "What Department to add?"
+        }
+    ]).then((res) => {
+        connection.query(
+            "INSERT INTO department SET ? ",
+            {
+              name: res.name
+            },
+            (err) => {
+                if (err) throw err
+                console.table(res)
+                promptUser()
+            }
+        )
+    })
 }
 
 const viewBudget = () => {
