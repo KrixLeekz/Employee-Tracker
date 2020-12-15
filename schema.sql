@@ -40,32 +40,35 @@ VALUE ("Executive");
 
 
 INSERT INTO role (title, salary, department_id)
-VALUE ("Lead Engineer", 150000, 2);
+VALUE ("Head Researcher", 170000, 4);
 INSERT INTO role (title, salary, department_id)
-VALUE ("Legal Team Lead", 250000, 4);
+VALUE ("Marketing Agent", 70000, 1);
 INSERT INTO role (title, salary, department_id)
-VALUE ("Accountant", 125000, 3);
+VALUE ("Accountant", 90000, 3);
 INSERT INTO role (title, salary, department_id)
-VALUE ("Sales Lead", 100000, 1);
+VALUE ("Sales Lead", 100000, 2);
 INSERT INTO role (title, salary, department_id)
-VALUE ("Salesperson", 80000, 1);
+VALUE ("Salesperson", 60000, 2);
 INSERT INTO role (title, salary, department_id)
-VALUE ("Software Engineer", 120000, 2);
+VALUE ("Researcher", 110000, 4);
 INSERT INTO role (title, salary, department_id)
-VALUE ("Lawyer", 190000, 4);
+VALUE ("CEO", 600000, 5);
 
 
 INSERT INTO employee (first_name, last_name, manager_id, role_id)
-VALUE ("Jessica", "Haze", null, 1);
+VALUE ("Laura", "Lamb", null, 1);
 INSERT INTO employee (first_name, last_name, manager_id, role_id)
-VALUE ("Tiffany", "Patric", null, 2);
+VALUE ("Jake", "Poltry", null, 2);
 INSERT INTO employee (first_name, last_name, manager_id, role_id)
-VALUE ("Mia","Lam",null,3);
+VALUE ("Kristen","Yeusewitz",null,3);
 INSERT INTO employee (first_name, last_name, manager_id, role_id)
-VALUE ("Bently", "Lao", 1, 4);
+VALUE ("Gardner", "Webb", null, 4);
 INSERT INTO employee (first_name, last_name, manager_id, role_id)
-VALUE ("Chris", "Melby", 4, 5);
+VALUE ("Chris", "Lyko", 4, 5);
 INSERT INTO employee (first_name, last_name, manager_id, role_id)
-VALUE ("Jason", "Baker", 1, 6);
+VALUE ("Kyle", "Singer", 4, 5);
 INSERT INTO employee (first_name, last_name, manager_id, role_id)
-VALUE ("Tom", "Nice", 2, 7);
+VALUE ("David", "Cruz", 1, 6);
+INSERT INTO employee (first_name, last_name, manager_id, role_id)
+VALUE ("Bryan", "Maust", null, 7);
+
