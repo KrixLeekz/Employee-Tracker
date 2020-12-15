@@ -97,8 +97,41 @@ const viewEmplsDept = () => {
         })
 }
 
+//Updates Employee
 const updateEmpl = () => {
+    connection.query("SELECT employee.last_name, role.title FROM employee JOIN role ON employee.role_id = role.id;", (err, res) => {
+        if (err) throw err
+        inquirer.prompt([
+            {
+                name: "lastName",
+                type: "rawlist",
+                choices: () => {
+                    let lastName = [];
+                    for (let i = 0; i < res.length; i++) {
+                        lastName.push(res[i].last_name);
+                    }
+                    return lastName;
+                },
+                message: "What is the Employee last name? ",
+            },
+            {
+                name: "role",
+                type: "rawlist",
+                message: "What is the new title? ",
+                choices: chooseRole()
+            },
+        ]).then((answers) => {
+            let roleId = chooseRole().indexOf(answers.role) + 1
+            connection.query("UPDATE employee SET role_id = ? WHERE last_name = ?",
+                [roleId, answers.lastName],
+                (err) => {
+                    if (err) throw err
+                    console.table(answers)
+                    promptUser()
+                })
 
+        })
+    })
 }
 
 //Adds Employee
@@ -175,15 +208,15 @@ const addRole = () => {
 const addDept = () => {
     inquirer.prompt([
         {
-          name: "name",
-          type: "input",
-          message: "What Department to add?"
+            name: "name",
+            type: "input",
+            message: "What Department to add?"
         }
     ]).then((res) => {
         connection.query(
             "INSERT INTO department SET ? ",
             {
-              name: res.name
+                name: res.name
             },
             (err) => {
                 if (err) throw err
